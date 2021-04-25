@@ -1,48 +1,65 @@
-CREATE TABLE `persona` (
-  `id` <type>,
-  `rango_edad` <type>
+CREATE TABLE `Accidente`  (
+  `id` int NOT NULL,
+  `fecha` date NULL,
+  `ano` int NULL,
+  `fkid_departamento` varchar(255) NULL,
+  `fkid_municipio` varchar(255) NULL,
+  `id_vehiculo` varchar(255) NULL,
+  PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `municipio` (
-  `id` <type>,
-  `codigo_departamento` <type>,
-  `codigo_municipio` <type>,
-  `nombre` <type>
+CREATE TABLE `Departamento`  (
+  `id` int NOT NULL,
+  `codigo_departamento` varchar(5) NULL,
+  `codigo_municipio` varchar(5) NULL,
+  `nombre` varchar(255) NULL,
+  PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `accidente` (
-  `id` <type>,
-  `fecha` <type>,
-  `ano` <type>,
-  `fkid_municipio` <type>,
-  `fkid_departamento` <type>,
-  `id_vehiculo` <type>
+CREATE TABLE `Municipio`  (
+  `id` int NOT NULL,
+  `codigo_departamento` varchar(5) NOT NULL,
+  `codigo_municipio` varchar(5) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `departamento` (
-  `id` <type>,
-  `codigo` <type>,
-  `nombre` <type>
+CREATE TABLE `ObjetoDeColision`  (
+  `id` int NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `vehiculo` (
-  `id` <type>,
-  `fk_tipo_de_vehiculo` <type>
+CREATE TABLE `Persona`  (
+  `id` int NOT NULL,
+  `rango_edad` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `tipo_vehiculo` (
-  `id` <type>,
-  `nombre` <type>
+CREATE TABLE `TipoVehiculo`  (
+  `id` int NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `objeto_de_colision` (
-  `id` <type>,
-  `nombre` <type>
+CREATE TABLE `Vehiculo`  (
+  `id` int NOT NULL,
+  `fk_dipo_de_vehiculo` int NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `vehiculo_objeto_de_colision` (
-  `id` <type>,
-  `fkid_vehiculo` <type>,
-  `fkid_objeto_de_colision` <type>
+CREATE TABLE `Vehiculo_Objeto_de_Colision`  (
+  `id` int NOT NULL,
+  `fkid_vehiculo` int NULL,
+  `fkid_objecto_de_colision` int NULL,
+  PRIMARY KEY (`id`)
 );
 
+ALTER TABLE `Accidente` ADD CONSTRAINT `fk_Accidente_Persona_1` FOREIGN KEY (`id`) REFERENCES `Persona` (`rango_edad`);
+ALTER TABLE `Departamento` ADD CONSTRAINT `fk_Departamento_Accidente_1` FOREIGN KEY (`id`) REFERENCES `Accidente` (`fkid_departamento`);
+ALTER TABLE `Departamento` ADD CONSTRAINT `fk_Departamento_Municipio_1` FOREIGN KEY (`id`) REFERENCES `Municipio` (`codigo_departamento`);
+ALTER TABLE `Municipio` ADD CONSTRAINT `fk_Municipio_Accidente_1` FOREIGN KEY (`id`) REFERENCES `Accidente` (`fkid_municipio`);
+ALTER TABLE `ObjetoDeColision` ADD CONSTRAINT `fk_ObjetoDeColision_Vehiculo_Objeto_de_Colision_1` FOREIGN KEY (`id`) REFERENCES `Vehiculo_Objeto_de_Colision` (`fkid_objecto_de_colision`);
+ALTER TABLE `TipoVehiculo` ADD CONSTRAINT `fk_TipoVehiculo_Vehiculo_1` FOREIGN KEY (`id`) REFERENCES `Vehiculo` (`fk_dipo_de_vehiculo`);
+ALTER TABLE `Vehiculo` ADD CONSTRAINT `fk_Vehiculo_Vehiculo_Objeto_de_Colision_1` FOREIGN KEY (`id`) REFERENCES `Vehiculo_Objeto_de_Colision` (`fkid_vehiculo`);
+ALTER TABLE `Vehiculo` ADD CONSTRAINT `fk_Vehiculo_Accidente_1` FOREIGN KEY (`id`) REFERENCES `Accidente` (`id_vehiculo`);
