@@ -12,6 +12,7 @@ Diego Leon Zapata Ruiz - C.C. 71367417
 <br/>
 Juan Pablo Vasquez Builes - C.C. 1035428558
 </strong>
+<br/>
 Este repositorio contiene los archivos relacionados al primer taller.
 
 ## Modelo del Dominio
