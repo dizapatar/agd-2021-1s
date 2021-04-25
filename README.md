@@ -1,14 +1,17 @@
 # Analítica de Grandes Datos 2021 1S Trabajo en Grupo
 
 Este es el repositorio de nuestro equipo de trabajo conformado por las siguientes personas:
-
-
-#Diana Carolina Sarabia Sierra - CC. 53036766
-#Diego Armando Vargas Salazar - 9867018 
-#David Rodriguez Gonzalez - C.C. 1017210951
-#Diego Leon Zapata Ruiz - C.C. 71367417
-#Juan Pablo Vasquez Builes - C.C. 1035428558
-
+<br/>
+<strong>Diana Carolina Sarabia Sierra - CC. 53036766
+<br/>
+Diego Armando Vargas Salazar - 9867018 
+<br/>
+David Rodriguez Gonzalez - C.C. 1017210951
+<br/>
+Diego Leon Zapata Ruiz - C.C. 71367417
+<br/>
+Juan Pablo Vasquez Builes - C.C. 1035428558
+</strong>
 Este repositorio contiene los archivos relacionados al primer taller.
 
 ## Modelo del Dominio
