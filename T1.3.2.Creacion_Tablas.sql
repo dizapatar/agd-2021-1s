@@ -1,65 +1,113 @@
-CREATE TABLE `accidente`  (
-  `id` int NOT NULL,
-  `fecha` date NULL,
-  `ano` int NULL,
-  `fkid_departamento` varchar(255) NULL,
-  `fkid_municipio` varchar(255) NULL,
-  `id_vehiculo` varchar(255) NULL,
-  PRIMARY KEY (`id`)
-);
+/*
+ Navicat Premium Data Transfer
 
-CREATE TABLE `departamento`  (
-  `id` int NOT NULL,
-  `nombre` varchar(255) NULL,
-  `codigo` varchar(5) NULL,
-  PRIMARY KEY (`id`)
-);
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50542
+ Source Host           : localhost:3306
+ Source Schema         : agd_2021_1s_equipo
 
-CREATE TABLE `municipio`  (
-  `id` int NOT NULL,
-  `codigo_departamento` varchar(5) NOT NULL,
-  `codigo` varchar(5) NOT NULL,
+ Target Server Type    : MySQL
+ Target Server Version : 50542
+ File Encoding         : 65001
+
+ Date: 27/04/2021 11:13:34
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for accidente
+-- ----------------------------
+DROP TABLE IF EXISTS `accidente`;
+CREATE TABLE `accidente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `ano` int(11) NOT NULL,
+  `id_departamento` int(11) NOT NULL,
+  `id_municipio` int(11) NOT NULL,
+  `id_vehiculo` int(11) NOT NULL,
+  `id_lesionado` int(11) NOT NULL,
+  `id_objeto_colision` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_accidente_objeto_colision_1` (`id_objeto_colision`),
+  KEY `fk_accidente_departamento_1` (`id_departamento`),
+  KEY `fk_accidente_lesionado_1` (`id_lesionado`),
+  KEY `fk_accidente_municipio_1` (`id_municipio`),
+  KEY `fk_accidente_vehiculo_1` (`id_vehiculo`),
+  CONSTRAINT `fk_accidente_departamento_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_accidente_lesionado_1` FOREIGN KEY (`id_lesionado`) REFERENCES `lesionado` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_accidente_municipio_1` FOREIGN KEY (`id_municipio`) REFERENCES `municipio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_accidente_objeto_colision_1` FOREIGN KEY (`id_objeto_colision`) REFERENCES `objeto_colision` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_accidente_vehiculo_1` FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for departamento
+-- ----------------------------
+DROP TABLE IF EXISTS `departamento`;
+CREATE TABLE `departamento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
+  `codigo_departamento` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `objeto_de_colision`  (
-  `id` int NOT NULL,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `persona`  (
-  `id` int NOT NULL,
+-- ----------------------------
+-- Table structure for lesionado
+-- ----------------------------
+DROP TABLE IF EXISTS `lesionado`;
+CREATE TABLE `lesionado` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `rango_edad` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `tipo_vehiculo`  (
-  `id` int NOT NULL,
+-- ----------------------------
+-- Table structure for municipio
+-- ----------------------------
+DROP TABLE IF EXISTS `municipio`;
+CREATE TABLE `municipio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo_municipio` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `id_departamento` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_municipio_id_departamento_1` (`id_departamento`),
+  CONSTRAINT `fk_municipio_id_departamento_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1127 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for objeto_colision
+-- ----------------------------
+DROP TABLE IF EXISTS `objeto_colision`;
+CREATE TABLE `objeto_colision` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `vehiculo`  (
-  `id` int NOT NULL,
-  `fk_dipo_de_vehiculo` int NOT NULL,
+-- ----------------------------
+-- Table structure for tipo_vehiculo
+-- ----------------------------
+DROP TABLE IF EXISTS `tipo_vehiculo`;
+CREATE TABLE `tipo_vehiculo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `vehiculo_objeto_de_colision`  (
-  `id` int NOT NULL,
-  `fkid_vehiculo` int NULL,
-  `fkid_objecto_de_colision` int NULL,
-  PRIMARY KEY (`id`)
-);
+-- ----------------------------
+-- Table structure for vehiculo
+-- ----------------------------
+DROP TABLE IF EXISTS `vehiculo`;
+CREATE TABLE `vehiculo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tipo_de_vehiculo` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_vehiculo_tipo_vehiculo_1` (`id_tipo_de_vehiculo`),
+  CONSTRAINT `fk_vehiculo_tipo_vehiculo_1` FOREIGN KEY (`id_tipo_de_vehiculo`) REFERENCES `tipo_vehiculo` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `accidente` ADD CONSTRAINT `fk_Accidente_Persona_1` FOREIGN KEY (`id`) REFERENCES `persona` (`rango_edad`);
-ALTER TABLE `departamento` ADD CONSTRAINT `fk_Departamento_Accidente_1` FOREIGN KEY (`id`) REFERENCES `accidente` (`fkid_departamento`);
-ALTER TABLE `departamento` ADD CONSTRAINT `fk_Departamento_Municipio_1` FOREIGN KEY (`id`) REFERENCES `municipio` (`codigo_departamento`);
-ALTER TABLE `municipio` ADD CONSTRAINT `fk_Municipio_Accidente_1` FOREIGN KEY (`id`) REFERENCES `accidente` (`fkid_municipio`);
-ALTER TABLE `objeto_de_colision` ADD CONSTRAINT `fk_ObjetoDeColision_Vehiculo_Objeto_de_Colision_1` FOREIGN KEY (`id`) REFERENCES `vehiculo_objeto_de_colision` (`fkid_objecto_de_colision`);
-ALTER TABLE `tipo_vehiculo` ADD CONSTRAINT `fk_TipoVehiculo_Vehiculo_1` FOREIGN KEY (`id`) REFERENCES `vehiculo` (`fk_dipo_de_vehiculo`);
-ALTER TABLE `vehiculo` ADD CONSTRAINT `fk_Vehiculo_Vehiculo_Objeto_de_Colision_1` FOREIGN KEY (`id`) REFERENCES `vehiculo_objeto_de_colision` (`fkid_vehiculo`);
-ALTER TABLE `vehiculo` ADD CONSTRAINT `fk_Vehiculo_Accidente_1` FOREIGN KEY (`id`) REFERENCES `accidente` (`id_vehiculo`);
-
+SET FOREIGN_KEY_CHECKS = 1;
