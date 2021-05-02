@@ -11,7 +11,7 @@
  Target Server Version : 50542
  File Encoding         : 65001
 
- Date: 27/04/2021 11:13:34
+ Date: 02/05/2021 11:48:18
 */
 
 SET NAMES utf8mb4;
@@ -44,15 +44,27 @@ CREATE TABLE `accidente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
+-- Records of accidente
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for departamento
 -- ----------------------------
 DROP TABLE IF EXISTS `departamento`;
 CREATE TABLE `departamento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  `codigo_departamento` int(11) NOT NULL,
+  `codigo_departamento` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of departamento
+-- ----------------------------
+BEGIN;
+COMMIT;
 
 -- ----------------------------
 -- Table structure for lesionado
@@ -65,18 +77,30 @@ CREATE TABLE `lesionado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
+-- Records of lesionado
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for municipio
 -- ----------------------------
 DROP TABLE IF EXISTS `municipio`;
 CREATE TABLE `municipio` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo_municipio` int(11) NOT NULL,
+  `codigo_municipio` varchar(5) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `id_departamento` int(11) NOT NULL,
+  `id_departamento` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_municipio_id_departamento_1` (`id_departamento`),
   CONSTRAINT `fk_municipio_id_departamento_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1127 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of municipio
+-- ----------------------------
+BEGIN;
+COMMIT;
 
 -- ----------------------------
 -- Table structure for objeto_colision
@@ -87,6 +111,12 @@ CREATE TABLE `objeto_colision` (
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of objeto_colision
+-- ----------------------------
+BEGIN;
+COMMIT;
 
 -- ----------------------------
 -- Table structure for tipo_vehiculo
@@ -104,10 +134,17 @@ CREATE TABLE `tipo_vehiculo` (
 DROP TABLE IF EXISTS `vehiculo`;
 CREATE TABLE `vehiculo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
   `id_tipo_de_vehiculo` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_vehiculo_tipo_vehiculo_1` (`id_tipo_de_vehiculo`),
   CONSTRAINT `fk_vehiculo_tipo_vehiculo_1` FOREIGN KEY (`id_tipo_de_vehiculo`) REFERENCES `tipo_vehiculo` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of vehiculo
+-- ----------------------------
+BEGIN;
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
