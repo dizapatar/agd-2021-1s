@@ -103,7 +103,7 @@ CREATE TABLE `tipo_vehiculo` (
 -- ----------------------------
 DROP TABLE IF EXISTS `vehiculo`;
 CREATE TABLE `vehiculo` (
-  `id:vehiculo` int(11) NOT NULL AUTO_INCREMENT,
+  `id_vehiculo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_vehiculo_tipo_vehiculo_1` (`id_tipo_de_vehiculo`),
