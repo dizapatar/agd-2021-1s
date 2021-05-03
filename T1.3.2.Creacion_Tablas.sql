@@ -92,7 +92,7 @@ CREATE TABLE `objeto_colision` (
 -- Table structure for tipo_vehiculo
 -- ----------------------------
 DROP TABLE IF EXISTS `grupo_vehiculo`;
-CREATE TABLE `tipo_vehiculo` (
+CREATE TABLE `grupo_vehiculo` (
   `id_grupo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
