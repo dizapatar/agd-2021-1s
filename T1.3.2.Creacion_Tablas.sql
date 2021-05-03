@@ -60,8 +60,17 @@ CREATE TABLE `departamento` (
 DROP TABLE IF EXISTS `lesionado`;
 CREATE TABLE `lesionado` (
   `id_lesionado` int(11) NOT NULL AUTO_INCREMENT,
-  `rango_edad` varchar(50) NOT NULL,
   `tipo_lesionado` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for lesionado
+-- ----------------------------
+DROP TABLE IF EXISTS `edad`;
+CREATE TABLE `edad` (
+  `id_edad` int(11) NOT NULL AUTO_INCREMENT,
+  `rango_edad` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
