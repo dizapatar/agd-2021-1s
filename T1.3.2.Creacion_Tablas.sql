@@ -48,7 +48,7 @@ CREATE TABLE `accidente` (
 -- ----------------------------
 DROP TABLE IF EXISTS `departamento`;
 CREATE TABLE `departamento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_departamento` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   `codigo_departamento` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -59,7 +59,7 @@ CREATE TABLE `departamento` (
 -- ----------------------------
 DROP TABLE IF EXISTS `lesionado`;
 CREATE TABLE `lesionado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_lesionado` int(11) NOT NULL AUTO_INCREMENT,
   `rango_edad` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -69,7 +69,7 @@ CREATE TABLE `lesionado` (
 -- ----------------------------
 DROP TABLE IF EXISTS `municipio`;
 CREATE TABLE `municipio` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_municipio` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_municipio` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `id_departamento` int(11) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `municipio` (
 -- ----------------------------
 DROP TABLE IF EXISTS `objeto_colision`;
 CREATE TABLE `objeto_colision` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_objeto` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -91,9 +91,9 @@ CREATE TABLE `objeto_colision` (
 -- ----------------------------
 -- Table structure for tipo_vehiculo
 -- ----------------------------
-DROP TABLE IF EXISTS `tipo_vehiculo`;
+DROP TABLE IF EXISTS `grupo_vehiculo`;
 CREATE TABLE `tipo_vehiculo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_grupo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
@@ -103,8 +103,8 @@ CREATE TABLE `tipo_vehiculo` (
 -- ----------------------------
 DROP TABLE IF EXISTS `vehiculo`;
 CREATE TABLE `vehiculo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_tipo_de_vehiculo` int(11) NOT NULL,
+  `id:vehiculo` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_vehiculo_tipo_vehiculo_1` (`id_tipo_de_vehiculo`),
   CONSTRAINT `fk_vehiculo_tipo_vehiculo_1` FOREIGN KEY (`id_tipo_de_vehiculo`) REFERENCES `tipo_vehiculo` (`id`)
