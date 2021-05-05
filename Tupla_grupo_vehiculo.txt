@@ -1,0 +1,13 @@
+INSERT INTO 'grupo_vehiculo' ('id_grupo', 'nombre') VALUES
+(1,'Motocicleta'),
+(2,'Bicicleta'),
+(3,'Transporte individual'),
+(4,'Peaton'),
+(5,'Otras motos'),
+(6,'Transporte de pasajeros'),
+(7,'N/A'),
+(8,'Transporte de carga'),
+(9,'Otros'),
+(10,'Maq. Industrial'),
+(11,'Maq. Agricola');
+
