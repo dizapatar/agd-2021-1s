@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `accidente`;
 CREATE TABLE `accidente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_accidente` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `ano` int(11) NOT NULL,
   `id_departamento` int(11) NOT NULL,
