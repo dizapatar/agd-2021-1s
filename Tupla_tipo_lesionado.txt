@@ -1,0 +1,8 @@
+INSERT INTO 'lesionado' ('id_lesionado', 'tipo_lesionado') VALUES
+(1,'UsuarioVia'),
+(2,'Usuario de moto'),
+(3,'Usuario de bicicleta'),
+(4,'Usuario de vehiculo'),
+(5,'Peaton'),
+(6,'Sin Informacion'),
+(7,'Usuario otros');

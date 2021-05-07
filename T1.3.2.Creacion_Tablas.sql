@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `accidente`;
 CREATE TABLE `accidente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_accidente` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `ano` int(11) NOT NULL,
   `id_departamento` int(11) NOT NULL,
@@ -54,7 +54,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `departamento`;
 CREATE TABLE `departamento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_departamento` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   `codigo_departamento` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
@@ -71,7 +71,17 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `lesionado`;
 CREATE TABLE `lesionado` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_lesionado` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_lesionado` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for lesionado
+-- ----------------------------
+DROP TABLE IF EXISTS `edad`;
+CREATE TABLE `edad` (
+  `id_edad` int(11) NOT NULL AUTO_INCREMENT,
   `rango_edad` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -107,7 +117,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `objeto_colision`;
 CREATE TABLE `objeto_colision` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_objeto` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,9 +131,9 @@ COMMIT;
 -- ----------------------------
 -- Table structure for tipo_vehiculo
 -- ----------------------------
-DROP TABLE IF EXISTS `tipo_vehiculo`;
-CREATE TABLE `tipo_vehiculo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `grupo_vehiculo`;
+CREATE TABLE `grupo_vehiculo` (
+  `id_grupo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
